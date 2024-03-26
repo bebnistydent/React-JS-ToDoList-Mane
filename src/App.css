@@ -1,0 +1,22 @@
+.App {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.App > div {
+  margin-right: 50px;
+  
+}
+
+.todolist {
+  background-color:bisque;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+li {
+  list-style-type: none;
+}
