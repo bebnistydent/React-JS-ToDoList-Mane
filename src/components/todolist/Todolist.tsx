@@ -1,7 +1,8 @@
-
+  
 type TodolistProopsTupe = {
   title: string
   tasks: Array<TaskType>
+  removeTask: (taskId: number) => void
 }
 
 export type TaskType = {
@@ -12,19 +13,24 @@ export type TaskType = {
 
 
 export const Todolist = (props: TodolistProopsTupe) => {
-  const {title, tasks} = props
+  const {title, tasks, removeTask} = props
   
 
   //const tasks_list = tasks.map()
 
-  const taskList: Array<JSX.Element> = [] //I have no clue what "JSX.Elevent" is. Yet
-  for (let i = 0; i < tasks.length; i++) {
-    taskList.push (
-      <li><input type="checkbox" checked={tasks[i].isDone}/> 
-          <span>{tasks[i].title}</span>
+  const taskList: Array<JSX.Element> = tasks.map(tasks => {
+    
+    const removeTaskHandler = () => removeTask(tasks.id)
+    
+    return (
+      <li>
+          <input type="checkbox" checked={tasks.isDone}/> 
+          <span>{tasks.title}</span>
+          <button onClick={removeTaskHandler}>X</button>
       </li>
-    )
-  }
+     )
+    })
+  
 
   return (
     <div className="todolist">
