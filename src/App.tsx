@@ -12,16 +12,16 @@ import { TaskType, Todolist } from './components/todolist/Todolist';
 //Update
 //Delete
 
-type FilterValuesType = "all" | "active" | "completed"
+export type FilterValuesType = "all" | "active" | "completed"
 
 function App() {
 
     
     const TodolistTitle = "Band's concert have attended";
     
-
+        //Global state
         const [tasks, setTasks] = useState<Array<TaskType>>([
-            {id: 1, title: "Metallica", isDone: false},
+            {id: 1, title: "Metallica", isDone: true},
             {id: 2, title: "Slayer", isDone: false},
             {id: 3, title: "Nirvana", isDone: false},
             
@@ -47,26 +47,7 @@ function App() {
             setTasks(newState)
 
        }
-
-       const [filter,setFilter] = useState<FilterValuesType>("active") 
-
     
-       const getTasksForTodoList = (allTasks: Array<TaskType>, 
-       nextFilterValue: FilterValuesType) => {
-        switch (nextFilterValue) {
-            case "active":
-               return allTasks.filter(t => t.isDone === false);
-
-            case "completed":
-                return allTasks.filter(t => t.isDone === true);
-        
-            default:
-                return allTasks;
-        }
-
-       }
-
-       const tasksForTodoList = getTasksForTodoList(tasks, filter)
    
 
 
@@ -75,8 +56,9 @@ function App() {
             
             <Todolist 
                 title= {TodolistTitle} 
-                tasks={tasksForTodoList} 
+                tasks={tasks} 
                 removeTask={removeTask}
+                
 
             />
             
